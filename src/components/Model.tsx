@@ -34,7 +34,7 @@ export default function Model() {
       }
 
       anim.step += anim.forward ? anim.speed : -anim.speed
-      mesh.position.copy(anim.direction.clone().multiplyScalar(anim.step)) // mix
+      mesh.position.copy(anim.direction.clone().multiplyScalar(anim.step)) // lerp
     })
   })
 
