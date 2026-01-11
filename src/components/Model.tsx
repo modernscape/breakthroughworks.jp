@@ -1,42 +1,83 @@
 "use client"
 
 import {useEffect, useRef} from "react"
-import {useGLTF} from "@react-three/drei"
 import {useFrame} from "@react-three/fiber"
 import * as THREE from "three"
+import {GLTFLoader} from "three/examples/jsm/Addons.js"
+
+import {CenterData} from "@/data/centerData"
+import {createMeshAnim} from "@/animation/createMeshAnim"
+import {updateMeshAnim} from "@/animation/updateMeshAnim"
+import {MeshAnimData} from "@/animation/types"
 import {loadCenters} from "@/lib/loadCenters"
-import {CenterData} from "@/types/center"
-import {applyMeshAnimation} from "@/lib/applyMeshAnimation"
+import {easeInOutCubic} from "@/animation/easing"
+import {log} from "console"
 
 export default function Model() {
-  const {scene} = useGLTF("/model/24-11-10_sphere.glb")
-  const centersRef = useRef<Map<string, CenterData>>(new Map())
+  const groupRef = useRef<THREE.Group>(null)
+  const animsRef = useRef<MeshAnimData[]>([])
+  const centersRef = useRef<CenterData[]>([])
+
+  /* -----------------------------
+   * CenterData をロード
+   * ----------------------------- */
+  // useEffect(() => {
+  //   fetch("/data/data.json")
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       centersRef.current = json.centers
+  //     })
+  // }, [])
 
   useEffect(() => {
-    loadCenters().then((map) => {
-      centersRef.current = map
-      applyMeshAnimation(scene, centersRef.current)
+    loadCenters().then((centers) => {
+      centersRef.current = centers // CenterData[]
     })
-  }, [scene])
+  }, [])
 
-  useFrame(() => {
-    scene.traverse((obj) => {
-      const mesh = obj as THREE.Mesh
-      const anim = mesh.userData.anim
-      if (!anim) return
+  /* -----------------------------
+   * GLB をロード
+   * ----------------------------- */
+  useEffect(() => {
+    const loader = new GLTFLoader()
 
-      if (anim.step < 0) {
-        anim.forward = true
-        anim.step = 0 // MIN:0
-      } else if (anim.step > 1) {
-        anim.forward = false
-        anim.step = 1 // MAX:1
-      }
+    loader.load("/model/24-11-10_sphere.glb", (gltf) => {
+      const scene = gltf.scene
 
-      anim.step += anim.forward ? anim.speed : -anim.speed
-      mesh.position.copy(anim.direction.clone().multiplyScalar(anim.step)) // lerp
+      scene.traverse((obj) => {
+        if (!(obj instanceof THREE.Mesh)) return
+
+        console.log(obj)
+
+        const center = centersRef.current.find((c) => c.name === obj.name)
+        console.log(center)
+
+        if (!center) return
+
+        const targetPos = obj.position.clone().multiplyScalar(1.0)
+
+        const anim = createMeshAnim(obj, center, {
+          from: obj.position.clone(),
+          to: targetPos,
+          duration: 2000,
+          easing: easeInOutCubic,
+        })
+
+        animsRef.current.push(anim)
+      })
+
+      groupRef.current?.add(scene)
     })
+  }, [])
+
+  /* -----------------------------
+   * 毎フレーム更新
+   * ----------------------------- */
+  useFrame((state) => {
+    const now = state.clock.elapsedTime
+
+    animsRef.current = animsRef.current.filter((anim) => updateMeshAnim(anim, now))
   })
 
-  return <primitive object={scene} />
+  return <group ref={groupRef} />
 }
