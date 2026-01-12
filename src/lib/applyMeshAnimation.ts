@@ -12,20 +12,22 @@ export function applyMeshAnimation(
     const center = centers.get(mesh.name) //CenterData
     if (!center) return
 
-    const parent = mesh.parent as THREE.Object3D
-
-    const c0World = new THREE.Vector3(...center.p0)
-    const c1World = new THREE.Vector3(...center.p1)
-
-    const c0Local = parent.worldToLocal(c0World.clone())
-    const c1Local = parent.worldToLocal(c1World.clone())
+    const p0 = new THREE.Vector3(...center.p0)
+    const p1 = new THREE.Vector3(...center.p1)
 
     mesh.userData.anim = {
-      c0: c0Local,
-      c1: c1Local,
+      delta: p0.clone().sub(p1), // ★ここ
       step: center.step,
       speed: center.speed,
       forward: true,
     }
+
+    // mesh.userData.anim = {
+    //   c0: c0Local,
+    //   c1: c1Local,
+    //   step: center.step,
+    //   speed: center.speed,
+    //   forward: true,
+    // }
   })
 }

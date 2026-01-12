@@ -12,6 +12,7 @@ import {MeshAnimData} from "@/animation/type"
 export default function Model() {
   const {scene} = useGLTF("/model/24-11-10_sphere.glb")
   const centersRef = useRef<Map<string, CenterData>>(new Map())
+  const ZERO = new THREE.Vector3(0, 0, 0)
 
   useEffect(() => {
     loadCenters().then((map) => {
@@ -34,7 +35,8 @@ export default function Model() {
         anim.step = THREE.MathUtils.clamp(anim.step, 0, 1)
       }
 
-      obj.position.lerpVectors(anim.c0, anim.c1, anim.step)
+      obj.position.lerpVectors(anim.delta, ZERO, anim.step)
+      // obj.position.lerpVectors(anim.c0, anim.c1, anim.step)
     })
   })
 
