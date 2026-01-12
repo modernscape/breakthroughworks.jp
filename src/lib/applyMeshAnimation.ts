@@ -1,6 +1,5 @@
 import {CenterData} from "@/types/center"
 import * as THREE from "three"
-import {MeshAnimData} from "@/animation/type"
 
 export function applyMeshAnimation(
   scene: THREE.Object3D, //
