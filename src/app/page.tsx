@@ -7,5 +7,3 @@ export default function Page() {
     </main>
   )
 }
-
-// やり直す
