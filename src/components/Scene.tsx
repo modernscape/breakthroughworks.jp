@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import {Canvas} from "@react-three/fiber";
-import {OrbitControls} from "@react-three/drei";
-import Lights from "./Lights";
-import Model from "./Model";
+import {Canvas} from "@react-three/fiber"
+import {OrbitControls} from "@react-three/drei"
+import Lights from "./Lights"
+import Model from "./Model"
 
 export default function Scene() {
   return (
@@ -20,6 +20,7 @@ export default function Scene() {
         minDistance={3}
         maxDistance={15}
       />
+      <axesHelper args={[5]} />
     </Canvas>
-  );
+  )
 }
