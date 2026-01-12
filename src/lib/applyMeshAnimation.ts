@@ -1,5 +1,6 @@
 import {CenterData} from "@/types/center"
 import * as THREE from "three"
+import {MeshAnimData} from "@/animation/type"
 
 export function applyMeshAnimation(
   scene: THREE.Object3D, //
@@ -12,11 +13,17 @@ export function applyMeshAnimation(
     const center = centers.get(mesh.name) //CenterData
     if (!center) return
 
-    const c0 = new THREE.Vector3(...center.p0)
-    const c1 = new THREE.Vector3(...center.p1)
+    const parent = mesh.parent as THREE.Object3D
+
+    const c0World = new THREE.Vector3(...center.p0)
+    const c1World = new THREE.Vector3(...center.p1)
+
+    const c0Local = parent.worldToLocal(c0World.clone())
+    const c1Local = parent.worldToLocal(c1World.clone())
 
     mesh.userData.anim = {
-      direction: c0.clone().sub(c1),
+      c0: c0Local,
+      c1: c1Local,
       step: center.step,
       speed: center.speed,
       forward: true,
