@@ -20,7 +20,7 @@ export default function Scene() {
         minDistance={3}
         maxDistance={15}
       />
-      <axesHelper args={[5]} />
+      {/* <axesHelper args={[5]} /> */}
     </Canvas>
   )
 }

@@ -15,7 +15,7 @@ export default function Lights() {
         // position={[-500, 3400, 500]}
         position={[-500, 1000, 0]}
         castShadow
-        ref={lightRef}
+        // ref={lightRef}
       ></directionalLight>
     </>
   )
