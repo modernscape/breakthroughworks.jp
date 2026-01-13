@@ -15,12 +15,15 @@ export function applyMeshAnimation(
     const p0 = new THREE.Vector3(...center.p0)
     const p1 = new THREE.Vector3(...center.p1)
 
-    mesh.userData.anim = {
+    const anim = {
       delta: p0.clone().sub(p1), // ★ここ
       step: center.step,
       speed: center.speed,
       forward: true,
     }
+
+    mesh.userData.anim = anim
+    mesh.userData.baseSpeed = anim.speed
 
     // mesh.userData.anim = {
     //   c0: c0Local,

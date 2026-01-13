@@ -8,6 +8,7 @@ import {loadCenters} from "@/lib/loadCenters"
 import {CenterData} from "@/types/center"
 import {applyMeshAnimation} from "@/lib/applyMeshAnimation"
 import {MeshAnimData} from "@/animation/type"
+import {ThreeEvent} from "@react-three/fiber"
 
 export default function Model() {
   const {scene} = useGLTF("/model/24-11-10_sphere.glb")
@@ -58,5 +59,29 @@ export default function Model() {
   //   })
   // })
 
-  return <primitive object={scene} />
+  return (
+    <primitive
+      object={scene} //
+      onPointerOver={(e: ThreeEvent<PointerEvent>) => {
+        e.stopPropagation()
+        const mesh = e.object as THREE.Mesh
+        const anim = mesh.userData.anim
+        if (!anim) return
+        anim.speed = 0
+
+        const mat = mesh.material as THREE.MeshStandardMaterial
+        mat.wireframe = true
+      }}
+      onPointerOut={(e: ThreeEvent<PointerEvent>) => {
+        const mesh = e.object as THREE.Mesh
+        const anim = mesh.userData.anim
+        if (!anim) return
+
+        anim.speed = mesh.userData.baseSpeed
+
+        const mat = mesh.material as THREE.MeshStandardMaterial
+        mat.wireframe = false
+      }}
+    />
+  )
 }
