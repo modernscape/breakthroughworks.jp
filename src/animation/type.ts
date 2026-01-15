@@ -15,3 +15,11 @@ export type MeshAnimData = {
   speed: number
   forward: boolean
 }
+
+export type MorphState = {
+  pressTime: number
+  charge: number // 1.0でisTrigged = true
+  isPressing: boolean
+  isTrigged: boolean
+  targetIndex: number
+}

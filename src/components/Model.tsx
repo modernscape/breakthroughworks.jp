@@ -9,11 +9,22 @@ import {CenterData} from "@/types/center"
 import {applyMeshAnimation} from "@/lib/applyMeshAnimation"
 import {MeshAnimData} from "@/animation/type"
 import {ThreeEvent} from "@react-three/fiber"
+import {MorphState} from "@/animation/type"
+
+const PRESS_THRESHOLD = 1.2
 
 export default function Model() {
   const {scene} = useGLTF("/model/24-11-10_sphere.glb")
   const centersRef = useRef<Map<string, CenterData>>(new Map())
   const ZERO = new THREE.Vector3(0, 0, 0)
+
+  const state = useRef<MorphState>({
+    pressTime: 0,
+    charge: 0,
+    isPressing: false,
+    isTrigged: false,
+    targetIndex: 0,
+  })
 
   useEffect(() => {
     loadCenters().then((map) => {
@@ -41,23 +52,9 @@ export default function Model() {
     })
   })
 
-  // useFrame(() => {
-  //   scene.traverse((obj) => {
-  //     const mesh = obj as THREE.Mesh
-  //     const anim = mesh.userData.anim
-  //     if (!anim) return
+  const onPointerDown = () => {}
 
-  //     if (anim.step < 0) {
-  //       anim.forward = true
-  //       anim.step = 0 // MIN:0
-  //     } else if (anim.step > 1) {
-  //       anim.forward = false
-  //       anim.step = 1 // MAX:1
-  //     }
-
-  //     obj.position.lerpVectors(anim.c0, anim.c1, anim.step)
-  //   })
-  // })
+  const onPointerUp = () => {}
 
   return (
     <primitive
