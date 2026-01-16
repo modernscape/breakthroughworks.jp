@@ -21,7 +21,7 @@ export type MorphState = {
   charge: number // 1.0でisTrigged = true
   isPressing: boolean
   isTrigged: boolean
-  targetIndex: number
+  // targetIndex: number
 }
 
 export type MorphAnim = {

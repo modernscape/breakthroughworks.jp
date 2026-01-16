@@ -29,7 +29,7 @@ export default function Model() {
     charge: 0,
     isPressing: false,
     isTrigged: false,
-    targetIndex: 0,
+    // targetIndex: 0,
   })
 
   useEffect(() => {
@@ -60,12 +60,12 @@ export default function Model() {
   const PRESS_THRESHOLD = 1.2
   const CHARGE_SPEED = 1.0
   const DECAY_SPEED = 3.0
-  const _TARGETS_Length = 2
+  // const _TARGETS_Length = 2
 
   const onPointerDown = () => {
     state.current.isPressing = true
     state.current.isTrigged = false
-    state.current.targetIndex = Math.floor(Math.random()) * _TARGETS_Length
+    // state.current.targetIndex = Math.floor(Math.random()) * _TARGETS_Length
   }
 
   const onPointerUp = () => {
