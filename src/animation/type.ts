@@ -23,3 +23,9 @@ export type MorphState = {
   isTrigged: boolean
   targetIndex: number
 }
+
+export type MorphAnim = {
+  active: boolean
+  elapsed: number
+  duration: number
+}
