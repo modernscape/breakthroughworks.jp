@@ -13,7 +13,9 @@ export default function Scene() {
       camera={{fov: 45, position: [3, 9, 3]}}
     >
       <Environment
-        files="/hdr/autumn_field_puresky_4k.hdr" //
+        // files="/hdr/autumn_field_puresky_4k.hdr" //
+        // files="/hdr/kloofendal_48d_partly_cloudy_puresky_4k.hdr" //
+        files="/hdr/kloppenheim_06_puresky_4k.hdr" //
         background
       />
       <color attach="background" args={["#000000"]}></color>
