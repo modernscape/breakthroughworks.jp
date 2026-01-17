@@ -3,31 +3,19 @@
 import {Canvas} from "@react-three/fiber"
 import {OrbitControls} from "@react-three/drei"
 import {Environment} from "@react-three/drei"
-import Lights from "./Lights"
 import Model from "./Model"
+import Lights from "./Lights"
 
 export default function Scene() {
   return (
-    <Canvas
-      shadows //
-      camera={{fov: 45, position: [3, 9, 3]}}
-    >
+    <Canvas camera={{position: [0, 0, 4], fov: 50}}>
       <Environment
-        // files="/hdr/autumn_field_puresky_4k.hdr" //
-        // files="/hdr/kloofendal_48d_partly_cloudy_puresky_4k.hdr" //
         files="/hdr/kloppenheim_06_puresky_4k.hdr" //
         background
       />
-      <color attach="background" args={["#000000"]}></color>
       <Lights />
       <Model />
-      <OrbitControls
-        enableDamping //
-        enablePan={false}
-        minDistance={3}
-        maxDistance={15}
-      />
-      {/* <axesHelper args={[5]} /> */}
+      <OrbitControls />
     </Canvas>
   )
 }
