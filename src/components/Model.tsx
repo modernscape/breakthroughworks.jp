@@ -6,6 +6,7 @@ import {useRef, useEffect} from "react"
 import * as THREE from "three"
 import {applySoftMorph} from "@/lib/applySoftMorph"
 import {loadCenters} from "@/lib/loadCenters"
+import {CenterMap} from "@/types/center"
 
 export default function Model() {
   const {scene} = useGLTF("/model/24-11-10_sphere.glb")
@@ -21,29 +22,39 @@ export default function Model() {
     }[]
   >([])
 
-  const meshList = useRef<THREE.Mesh[]>([])
+  const centersRef = useRef<CenterMap | null>(null)
 
   useEffect(() => {
-    scene.traverse((obj) => {
-      if (obj instanceof THREE.Mesh) {
-        meshList.current.push(obj)
-      }
+    loadCenters().then((map) => {
+      centersRef.current = map
     })
+  }, [])
 
-    meshData.current = []
+  // const meshList = useRef<THREE.Mesh[]>([])
+
+  useEffect(() => {
+    if (!centersRef.current) return
 
     scene.traverse((obj) => {
-      if ((obj as THREE.Mesh).isMesh) {
-        const mesh = obj as THREE.Mesh
-        const pos = mesh.geometry.attributes.position
-
-        meshData.current.push({
-          mesh,
-          basePos: pos.array.slice() as Float32Array,
-        })
-      }
+      if (!(obj instanceof THREE.Mesh)) return
+      // meshList.current.push(obj) // ?
     })
   }, [scene])
+
+  //   meshData.current = []
+
+  //   scene.traverse((obj) => {
+  //     if ((obj as THREE.Mesh).isMesh) {
+  //       const mesh = obj as THREE.Mesh
+  //       const pos = mesh.geometry.attributes.position
+
+  //       meshData.current.push({
+  //         mesh,
+  //         basePos: pos.array.slice() as Float32Array,
+  //       })
+  //     }
+  //   })
+  // }, [scene])
 
   const onPointerDown = () => {
     pressRef.current = true
