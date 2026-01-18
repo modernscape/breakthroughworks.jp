@@ -20,7 +20,15 @@ export default function Model() {
     }[]
   >([])
 
+  const meshList = useRef<THREE.Mesh[]>([])
+
   useEffect(() => {
+    scene.traverse((obj) => {
+      if (obj instanceof THREE.Mesh) {
+        meshList.current.push(obj)
+      }
+    })
+
     meshData.current = []
 
     scene.traverse((obj) => {
