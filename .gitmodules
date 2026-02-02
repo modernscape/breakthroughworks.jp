@@ -1,0 +1,3 @@
+[submodule "projects/sphere"]
+	path = projects/sphere
+	url = https://github.com/modernscape/sphere.git
