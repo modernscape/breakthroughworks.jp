@@ -24,3 +24,20 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* index.css や App.css など */
+/* htmlとbodyそのものに高さを与える */
+/* html,
+body,
+#root,
+#__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+} */
+
+/* Three.jsを囲んでいる一番外側のdivにも高さを強制する */
+/* .w-full.h-full {
+  width: 100vw;
+  height: 100vh;
+} */

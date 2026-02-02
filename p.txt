@@ -1,0 +1,25 @@
+projects
+└── sphere
+    ├── animation
+    │   └── type.ts
+    ├── components
+    │   ├── Lights.tsx
+    │   ├── Model.tsx
+    │   └── Scene.tsx
+    ├── index.tsx
+    ├── lib
+    │   ├── applySoftMorph.ts
+    │   └── loadCenters.ts
+    ├── public
+    │   ├── data
+    │   │   └── data.json
+    │   ├── hdr
+    │   │   ├── autumn_field_puresky_4k.hdr
+    │   │   ├── kloofendal_48d_partly_cloudy_puresky_4k.hdr
+    │   │   └── kloppenheim_06_puresky_4k.hdr
+    │   └── model
+    │       └── 24-11-10_sphere.glb
+    └── types
+        └── center.ts
+
+10 directories, 13 files

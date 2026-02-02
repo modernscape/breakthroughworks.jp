@@ -1,0 +1,129 @@
+{
+  "items": [
+    {
+      "meshName": "m_gold",
+      "siteName": "fragments",
+      "href": "/pages/fragments/"
+    },
+    {
+      "meshName": "m_wood",
+      "siteName": "imgeToPoints_spread",
+      "href": "http://btw2.html.xdomain.jp/pages/24-10-08_imgeToPoints_spread/"
+    },
+    {
+      "meshName": "m_tile",
+      "siteName": "shuffle",
+      "href": "http://btw.html.xdomain.jp/02_shuffle/index.html"
+    },
+    {
+      "meshName": "m_purple",
+      "siteName": "Apps_Animation",
+      "href": "http://btw.html.xdomain.jp/_sample/Apps_Animation/"
+    },
+    {
+      "meshName": "m_stone",
+      "siteName": "sphere spread",
+      "href": "http://btw.html.xdomain.jp/three.js_book/practice/24-08-23_fragment_11_unit_sphere_spread.html"
+    },
+    {
+      "meshName": "m_004",
+      "siteName": "nothingness",
+      "href": "http://btw2.html.xdomain.jp/pages/24-11-17_nothingness/"
+    },
+    {
+      "meshName": "m_015",
+      "siteName": "morphGrid",
+      "href": "http://btw2.html.xdomain.jp/pages/25-01-18_morphGrid3/"
+    },
+    {
+      "meshName": "m_019",
+      "siteName": "fragment 09",
+      "href": "http://btw.html.xdomain.jp/three.js_book/practice/24-08-19_fragment_09.html"
+    },
+    {
+      "meshName": "m_glass",
+      "siteName": "Sphere Explosion",
+      "href": "http://btw2.html.xdomain.jp/pages/24-10-16_sphereExplosion_temp/"
+    },
+    {
+      "meshName": "m_000",
+      "siteName": "torus",
+      "href": "http://btw2.html.xdomain.jp/pages/24-11-15_torus/"
+    }
+  ],
+
+  "centers": [
+    {
+      "name": "m_gold",
+      "p0": [0.49069300293922424, 0.4223859906196594, -0.43302300572395325],
+      "p1": [0.945314, 0.725425, -0.816932],
+      "step": 1.0,
+      "speed": 0.005
+    },
+    {
+      "name": "m_tile",
+      "p0": [-0.81829, -0.557052, -0.144261],
+      "p1": [-0.906876, -0.617608, -0.164807],
+      "step": 0.2,
+      "speed": 0.004,
+      "comment": "x, z, -y"
+    },
+    {
+      "name": "m_wood",
+      "p0": [-0.026756, 0.135645, 0.84354],
+      "p1": [0.028925, 0.234816, 1.23373],
+      "step": 0.8,
+      "speed": 0.012
+    },
+    {
+      "name": "m_stone",
+      "p0": [0.09471, 0.953587, 0.220816],
+      "p1": [0.107412, 1.06081, 0.252691],
+      "step": 0.3,
+      "speed": 0.01
+    },
+    {
+      "name": "m_purple",
+      "p0": [0.438569, -0.678802, -0.058543],
+      "p1": [0.6931, -1.06105, -0.108417],
+      "step": 0.5,
+      "speed": 0.002,
+      "comment": "x, z, -y"
+    },
+    {
+      "name": "m_004",
+      "p0": [-0.772491, 0.121878, 0.320324],
+      "p1": [-1.04044, 0.161076, 0.418208],
+      "step": 0.5,
+      "speed": 0.01
+    },
+    {
+      "name": "m_015",
+      "p0": [-0.193419, -0.484271, -0.722023],
+      "p1": [-0.257865, -0.621712, -0.914727],
+      "step": 0.3,
+      "speed": 0.005
+    },
+    {
+      "name": "m_019",
+      "p0": [-0.157973, -0.705448, -0.091093],
+      "p1": [-0.270586, -1.23787, -0.193464],
+      "step": 0.3,
+      "speed": 0.005
+    },
+    {
+      "name": "m_glass",
+      "p0": [-0.45764, 0.374865, -0.378881],
+      "p1": [-0.808128, 0.674211, -0.71929],
+      "step": 0.3,
+      "speed": 0.005
+    },
+    {
+      "name": "m_000",
+      "p0": [-0.45764, 0.374865, -0.378881],
+      "p1": [-0.808128, 0.674211, -0.71929],
+      "step": 0.3,
+      "speed": 0.005
+    }
+  ]
+}

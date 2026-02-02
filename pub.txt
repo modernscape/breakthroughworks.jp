@@ -1,0 +1,8 @@
+public
+├── file.svg
+├── globe.svg
+├── next.svg
+├── vercel.svg
+└── window.svg
+
+1 directory, 5 files
