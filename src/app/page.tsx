@@ -1,13 +1,13 @@
+// src/app/page.tsx
 import {redirect} from "next/navigation"
 
-export default function Home() {
-  // 公開したいプロジェクトのパスを配列にする
-  const projects = ["/sphere", "/sphere_distortion"]
+// キャッシュを無効化し、アクセスごとにランダム判定を強制する
+export const dynamic = "force-dynamic"
 
-  // ランダムに一つ選ぶ
+export default function Home() {
+  const projects = ["/sphere", "/sphere_distortion"]
   const randomIndex = Math.floor(Math.random() * projects.length)
   const selectedPath = projects[randomIndex]
 
-  // 選ばれたパスへリダイレクト
   redirect(selectedPath)
 }
