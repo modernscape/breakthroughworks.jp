@@ -1,6 +1,13 @@
 import {redirect} from "next/navigation"
 
 export default function Home() {
-  // アクセスされたら即座に /sphere へリダイレクト
-  redirect("/sphere")
+  // 公開したいプロジェクトのパスを配列にする
+  const projects = ["/sphere", "/sphere_distortion"]
+
+  // ランダムに一つ選ぶ
+  const randomIndex = Math.floor(Math.random() * projects.length)
+  const selectedPath = projects[randomIndex]
+
+  // 選ばれたパスへリダイレクト
+  redirect(selectedPath)
 }
