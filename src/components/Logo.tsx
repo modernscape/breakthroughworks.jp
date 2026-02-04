@@ -5,13 +5,14 @@ import Link from "next/link"
 import {usePathname} from "next/navigation"
 
 const FloatingLogo = () => {
-  const [position, setPosition] = useState({x: 20, y: 20})
+  const [position, setPosition] = useState({x: 20, y: 30})
+  const [rotation, setRotation] = useState(0) // 回転用のステートを追加
   const [isDragging, setIsDragging] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
 
   const pathname = usePathname()
   const dragStart = useRef({x: 0, y: 0})
-  const initialPos = useRef({x: 20, y: 20})
+  const initialPos = useRef({x: 20, y: 30})
   const moveCount = useRef(0)
 
   const handlePointerDown = (e: React.PointerEvent) => {
@@ -27,19 +28,27 @@ const FloatingLogo = () => {
     if (!isDragging) return
     const dx = e.clientX - dragStart.current.x
     const dy = e.clientY - dragStart.current.y
+
     if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
       moveCount.current++
       setPosition({
         x: initialPos.current.x + dx,
         y: initialPos.current.y + dy,
       })
+      // ドラッグ中もわずかに傾けると動かしている感が出ます
+      setRotation(dx * 0.2)
     }
   }
 
   const handlePointerUp = (e: React.PointerEvent) => {
     setIsDragging(false)
     setIsAnimating(true)
-    setPosition({x: 20, y: 20})
+
+    // 戻る位置を設定
+    setPosition({x: 20, y: 30})
+    // 戻る時に 1回転（360度）して 0 に戻るように設定
+    setRotation(rotation + 760)
+
     if (moveCount.current < 5) {
       handleLogoClick(e)
     }
@@ -65,11 +74,13 @@ const FloatingLogo = () => {
         zIndex: 9999,
         cursor: isDragging ? "grabbing" : "grab",
         touchAction: "none",
-        // transitionProperty を消して、すべて一括指定の transition にまとめました
+        // transform も transition の対象に加えます
         transition: isAnimating
-          ? "left 0.6s cubic-bezier(0.25, 1, 0.5, 1), top 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease"
-          : "filter 0.3s ease",
+          ? "left 0.6s cubic-bezier(0.25, 1, 0.5, 1), top 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease"
+          : "filter 0.3s ease, transform 0.1s ease",
+        transform: `rotate(${rotation}deg)`,
         filter: isDragging ? "drop-shadow(0px 8px 12px rgba(0,0,0,0.4))" : "drop-shadow(0px 4px 6px rgba(0,0,0,0.2))",
+        opacity: 0.8,
       }}
     >
       <Link href="/" onClick={(e) => e.preventDefault()} draggable={false}>
@@ -85,7 +96,7 @@ const FloatingLogo = () => {
             fontWeight="bold"
             style={{userSelect: "none", pointerEvents: "none"}}
           >
-            BW
+            BTW
           </text>
         </svg>
       </Link>
