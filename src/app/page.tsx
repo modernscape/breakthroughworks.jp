@@ -11,8 +11,11 @@ const FragmentsEmbed = dynamic(() => import("./fragments/page"), {ssr: false})
 export default function Home() {
   const pages = [
     Sphere, //
+    Sphere,
+    Distortion,
     Distortion,
     TwilightEmbed,
+    FragmentsEmbed,
     FragmentsEmbed,
   ]
 
