@@ -96,7 +96,7 @@ const FloatingLogo = () => {
             fontWeight="bold"
             style={{userSelect: "none", pointerEvents: "none"}}
           >
-            BTW
+            Mid3
           </text>
         </svg>
       </Link>
