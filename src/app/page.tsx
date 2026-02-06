@@ -3,21 +3,21 @@
 import {Suspense, useState} from "react"
 import dynamic from "next/dynamic"
 
-const PAGE_PATHS = [
-  "@/projects/sphere", //
-  "@/projects/sphere_distortion",
-  "./twilight/page",
-  "./fragments/page",
-  "./imgeToPoints/page",
+// dynamicインポートしたコンポーネントの配列を作成
+const pages = [
+  dynamic(() => import("@/projects/sphere"), {ssr: false}),
+  dynamic(() => import("@/projects/sphere_distortion"), {ssr: false}),
+  dynamic(() => import("./twilight/page"), {ssr: false}),
+  dynamic(() => import("./fragments/page"), {ssr: false}),
+  dynamic(() => import("./imgeToPoints/page"), {ssr: false}),
+  dynamic(() => import("./imgeToPoints/page"), {ssr: false}), // 重複（確率アップ）用
 ]
 
 export default function Home() {
+  // useStateの初期化関数で一度だけランダムに選択
   const [RandomPage] = useState(() => {
-    // ランダムにパスを選択
-    const randomPath = PAGE_PATHS[Math.floor(Math.random() * PAGE_PATHS.length)]
-
-    // 選択されたパスだけを dynamic インポート
-    return dynamic(() => import(`${randomPath}`), {ssr: false})
+    const index = Math.floor(Math.random() * pages.length)
+    return pages[index]
   })
 
   return (
