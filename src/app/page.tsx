@@ -11,6 +11,7 @@ const importers = [
   () => import("./fragments/page"),
   () => import("./imgeToPoints/page"),
   () => import("./imgeToPoints/page"),
+  () => import("./sphere_explosion/page"),
 ]
 
 // 2. mapで一括してdynamicコンポーネントに変換
