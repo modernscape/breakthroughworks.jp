@@ -81,6 +81,13 @@ const FloatingLogo = () => {
         transform: `rotate(${rotation}deg)`,
         filter: isDragging ? "drop-shadow(0px 8px 12px rgba(0,0,0,0.4))" : "drop-shadow(0px 4px 6px rgba(0,0,0,0.2))",
         opacity: 0.8,
+
+        // --- ここからがiPhone対策 ---
+        WebkitTouchCallout: "none", // 1. リンクプレビュー（長押しメニュー）を禁止
+        WebkitUserSelect: "none", // 2. iOS Safariでの選択（青くなるの）を禁止
+        userSelect: "none", // 3. 一般的なブラウザでの選択を禁止
+        WebkitTapHighlightColor: "transparent", // 4. タップした瞬間の青い背景色を透明にする
+        // -------------------------
       }}
     >
       <Link href="/" onClick={(e) => e.preventDefault()} draggable={false}>
