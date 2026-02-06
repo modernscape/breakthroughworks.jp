@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Mid3.jp",
-  description: "Mid3.jp",
+  description: "for mode-structural senses",
 }
 
 export default function RootLayout({
